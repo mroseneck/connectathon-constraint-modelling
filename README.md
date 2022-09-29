@@ -1,4 +1,4 @@
-# Constraint modeling proof of concept
+# Constraint Modeling With Schemas
 Exploration of schema-driven constraint modeling in the context of an SDR.
 
 ## Rationale
