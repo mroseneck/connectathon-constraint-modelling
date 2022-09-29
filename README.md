@@ -50,7 +50,7 @@ Besides that, the xsd showcases some of the typical features of ODM files, e.g.:
 3. controlled terminology (items "gender" and "pregnant")
 4. conditional validity based on values (see above)
 5. internationalized annotations for human readers (line 11)
-6. annotations for other computer systems (lines 13 14)
+6. machine-readable annotations (lines 13 14)
 
 ## Convertibility
 Some prototyping showed very promising results regarding the possibility to create an XSD schema from any concrete ODM XML file using a single XSLT. If proper conventions are followed, even the reverse operation is possible. Both are serializations of an underlying SDR. The interesting question is: how do we continue from here? Do we add more extensions to ODM in order to get more guarantees for system integration, or do we switch to a proper shared contract now?
