@@ -56,7 +56,7 @@ Besides that, the xsd showcases some of the typical features of ODM files, e.g.:
 Some prototyping showed very promising results regarding the possibility to create an XSD schema from any concrete ODM XML file using a single XSLT. If proper conventions are followed, even the reverse operation is possible. Both are possible serialization formats of an underlying SDR. The interesting question is: how do we continue from here? Do we add more extensions to ODM in order to get more guarantees for system integration, or do we switch to a proper shared contract now? At some point, these decisions will define the systems we are building on top of them.
 
 ## Running the example
-An XSD 1.1 processor is required to run this schema. E.g. Saxon or Xerces.
+An XSD 1.1 processor is required to appy this schema to the data. E.g. Saxon or Xerces.
 
 ## Conclusions
 While it may still be too early to conclude that schemas are the way to go here, it certainly seems like a very promising direction for further research. The idea is nothing new, it would merely an alignment with established standards for cross-service communication in the world of web services.
