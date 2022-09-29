@@ -22,13 +22,13 @@ Each EDC systems has different features to e.g. use radio buttons instead of sel
 
 The major drawback of a Study Definition in this context is that is cannot be used as a means to validate the data that was produced by the system. There is no objective way to tell that the constraints are met. Both parties simply have to trust the system and fix potential issues in a costly manner whenever problems arise. Alternatively, they can create their own means of validation. Both routes seem unnecessarily expensive and time consuming.
 
-## Using Schemas instead
+## Using Schemas as a shared contract
 
-If the shared contract were an XML Schema (let's call it a "Study Schema"), the above problems would not exist. Every consumer of the data produced could express their constraints in an immutable schema file and validate against their constraints independently.
+The standard way of establishing a shared contract between systems in the world of web services is a schema. If system A accepts data from system B, then it usually exposes a description of what valid data looks like. A contract can be considered shared, if both sides can verify that the data adheres to it. A Typical example is JSON Schema as used by OpenAPI. Since we're still dealing with XML data being exported, in our case XML Schema (XSD) seems like the the most natural solution. Using XSD would have the following advantages:
 
-1. It allows to utilize the expressive power of XML Schema and put an end to the endless extensions of ODM.
+1. It allows to utilize the expressive power of XML Schema.
 2. It can be used to validate any kind of data, not just ECRF data.
-3. Due to its composable nature, it would allow for a modular way to combine and layer constraints, where e.g. structural concerns are clearly separated from other concerns. In ODM the only way of modularizing different constraints is MDV mechanism, which is clearly not intended for this and doesn't allow for type alternatives (e.g. an ItemDef can either be overwritten as a whole or not).
+3. Due to its composable nature, it would allow for a modular way to combine and layer constraints, where e.g. structural concerns are clearly separated from other concerns. In ODM the only way of modularizing different constraints is MDV mechanism, which is clearly not intended for this and due to its missing type system doesn't allow for any kind of polymorphism (e.g. an ItemDef can either be overwritten as a whole or not).
 4. It allows anybody to utilize the rich existing tooling for XML Schema to validate data, generate test data and so on.
 5. It drastically lowers the requirements for EDC systems to integrate with an SDR. Instead of supporting an import of the model and having to ensure consistency all the way to the export, EDC systems only need to ensure validity of the data exported. In other words, it is up to the vendor how they satisfy the constraints.
 6. It allows us to build system that are able to automatically validate and digest that data for further processing.
