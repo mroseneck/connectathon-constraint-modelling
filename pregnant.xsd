@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1"
+           xmlns:odm="http://www.cdisc.org/ns/odm/v1.3">
+  
+  <xs:element name="ItemGroup" type="item_group_type_inclusion"/>
+  
+  <xs:complexType name="item_group_type_inclusion">
+    
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Gender and Pregnancy Item Group</xs:documentation>
+      <xs:appinfo>
+        <odm:Type>Collected</odm:Type>
+        <odm:Source>Sponsor</odm:Source>
+      </xs:appinfo>
+    </xs:annotation>
+    
+    <xs:sequence>
+      <xs:element ref="Item" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="OID" type="xs:string"/>
+    <xs:assert test="(Item[@OID='gender']/@Value='m' and not(Item[@OID='pregnant'])) or (Item[@OID='gender']/@Value='f' and Item[@OID='pregnant'])"/>
+    <xs:assert test="((Item[@OID='pregnant']/@Value='n' and not(Item[@OID='month'])) or (Item[@OID='pregnant']/@Value='y' and Item[@OID='month'])) or (Item[@OID='gender']/@Value='m')"/>
+  </xs:complexType>
+  
+  <xs:element name="Item" type="allowed_item_oids_ig_incl">
+    <xs:alternative test="@OID = 'gender'" type="gender_type"/>
+    <xs:alternative test="@OID = 'pregnant'" type="pregnant_type"/>
+    <xs:alternative test="@OID = 'month'" type="month_type"/>
+  </xs:element>
+  
+  <xs:complexType name="allowed_item_oids_ig_incl" abstract="true">
+    <xs:attribute name="OID" type="allowed_item_oid_type"/>
+  </xs:complexType>
+  
+  <xs:simpleType name="allowed_item_oid_type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="gender"/>
+      <xs:enumeration value="pregnant"/>
+      <xs:enumeration value="month"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:complexType name="gender_type">
+    <xs:complexContent>
+      <xs:extension base="allowed_item_oids_ig_incl">
+        <xs:attribute name="Value" type="gender_value_type"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="pregnant_type">
+    <xs:complexContent>
+      <xs:extension base="allowed_item_oids_ig_incl">
+        <xs:attribute name="Value" type="pregnant_value_type"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="month_type">
+    <xs:complexContent>
+      <xs:extension base="allowed_item_oids_ig_incl">
+        <xs:attribute name="Value" type="month_value_type"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:simpleType name="gender_value_type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="m"/> 
+      <xs:enumeration value="f"/> 
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="pregnant_value_type" >
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="y"/> 
+      <xs:enumeration value="n"/> 
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="month_value_type">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="11"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>

@@ -1,0 +1,5 @@
+<ItemGroup OID="inclusion">
+    <Item OID="gender" Value="f" />
+    <Item OID="pregnant" Value="y" />
+    <Item OID="month" Value="9" />
+</ItemGroup>
