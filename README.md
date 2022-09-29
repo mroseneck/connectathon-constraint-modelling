@@ -10,9 +10,11 @@ The major drawback of a Study Definition in this context is that is can not be u
 
 This would have the following advantages:
 
-1. It would allow to utilize the enormous expressibility of XML Schema, that goes far beyond what can be expressed by ODM XML.
-2. Due to its composable nature, it would allow for a modular way to combine and layer constraints, where e.g. structural concerns are clearly separated from other concerns. In ODM the only way of modularizing different constraints is MDV mechanism, which is clearly not intended for this.
-3. It would allow anybody to utilize the existing tooling for XML Schema to validate data, generate test data and so on.
+1. It would allow to utilize the expressive power of XML Schema
+2. It can be used to validate any kind of data
+3. Due to its composable nature, it would allow for a modular way to combine and layer constraints, where e.g. structural concerns are clearly separated from other concerns. In ODM the only way of modularizing different constraints is MDV mechanism, which is clearly not intended for this.
+4. It would allow anybody to utilize the existing tooling for XML Schema to validate data, generate test data and so on.
+5. It would drastically lower the requirements for EDC systems to integrate with an SDR. Instead of supporting an import of the model and having to ensure consistency all the way to the export, EDC systems only need to ensure validity of the data exported. In other words, it is up to the vendor how they satisfy the constraints.
 
 ## Simple example of the expressive power of XSD
 This example shows a typical complex use case in real-world trials. An inclusion item group has three items, that are to be conditionally and successively enabled, i.e.:
@@ -34,5 +36,5 @@ Besides that the xsd showcases some of the typical features of ODM files, e.g.:
 5. internationalized labels for human readers (line 11)
 6. annotations for other computer systems (lines 13 14)
 
-## Running
+## Running the example
 An XSD 1.1 processor is required to run this schema. E.g. Saxon or Xerces.
