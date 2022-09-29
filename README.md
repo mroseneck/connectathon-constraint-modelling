@@ -1,5 +1,5 @@
 # Constraint Modeling With Schemas
-Exploration of schema-driven constraint modeling in the context of an SDR.
+Exploration of schema-driven constraint modeling in the context of integrating and EDC system with an SDR implementation.
 
 ## Rationale
 Currently, the standard for modeling study defnitions is the metadata part of ODM XML.
