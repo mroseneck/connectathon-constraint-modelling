@@ -12,7 +12,7 @@ Any concrete ODM Metadata file ("Study Definition") may be a valid "implementati
 
 ### Insufficient expressive power
 
-At XClinical, we make heavy use of our own vendor extensions to amend the shortcomings of ODM, regarding relationships of entities conditional validity. To name just one example:  ConditionDefs are insufficient to model complex enable/disable behavior of elements. 
+At XClinical, we make heavy use of our own vendor extensions to amend the shortcomings of ODM, regarding relationships of entities conditional validity. To name just two example:  ConditionDefs are insufficient to model complex enable/disable behavior of elements and there is no proper way to reflect the semantics of measurement units.
 
 ### System idiosyncrasies and extension versus composition
 
