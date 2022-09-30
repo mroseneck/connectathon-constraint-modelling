@@ -4,7 +4,7 @@ Exploration of schema-driven constraint modeling in the context of integrating a
 ## Rationale
 Currently, the standard for modeling study defnitions is the metadata part of ODM XML.
 
-ODM itself is available as an XSD schema that described an ontology of metadata entities (FormsDefs, StudyEventDefs, ItemDefs and so on) and their relationships. 
+ODM's own metadata constraints are available as an XSD schema that described an ontology of metadata entities (FormsDefs, StudyEventDefs, ItemDefs and so on) and their relationships. 
 
 Any concrete ODM Metadata file ("Study Definition") may be a valid "implementation" of that standard, but is itself not another Schema, but an XML file. It constitutes a further narrowing of the constraints given by ODM. E.g. where the ODM standard expects a "SubjectData" Element to have a "StudyEventData" child and a "FormData" child below that, a study definition explicates, what exactly the allowed children are and in which order they appear. The original purpose of these files was to be submitted as metadata alongside the actual data. In the context of ongoing efforts to create sophisticated data flows built on top of distributed systems, it may seem natural to consider an ODM study definition to be something like a shared contract between an SDR and an EDC system. So far, our experience is that this attempt is riddled with complications that mostly stem from the idea of using a study definition XML files as a shared contract between two computer systems. It seems dangerous at this point to use the ODM standard in a way that it was never intended for.
 
@@ -22,9 +22,12 @@ Each EDC systems has different features to e.g. use radio buttons instead of sel
 
 The major drawback of a Study Definition in this context is that is cannot be used as a means to validate the data that was produced by the system. There is no objective way to tell that the constraints are met. Both parties simply have to trust the system and fix potential issues in a costly manner whenever problems arise. Alternatively, they can create their own means of validation. Both routes seem unnecessarily expensive and time consuming.
 
+### Shared Model Problem
+The study definition thus serves as a monolithic shared model that any involved party can just add to. As a consequence, each involved system needs to implement increasingly sophisticated means to reflect the model's complexity instead of limiting itself to its own responsibilities. In a distributed system, any consumer of data should have a way of expressing its on constraints on a producer's data via a shared contract (see e.g. "Consumer-Driven Contract Testing: https://pactflow.io/what-is-consumer-driven-contract-testing/).
+
 ## Using Schemas as a shared contract
 
-The standard way of establishing a shared contract between systems in the world of web services is a schema. If system A accepts data from system B, then it usually exposes a description of what valid data looks like. A contract can be considered shared, if both sides can verify that the data adheres to it. A Typical example is JSON Schema as used by OpenAPI. Since we're still dealing with XML data being exported, in our case XML Schema (XSD) seems like the the most natural solution. Using XSD would have the following advantages:
+The standard way of establishing a shared contract regarding aggregate-level data between systems in the world of web services is a schema. If system A accepts data from system B, then it usually exposes a description of what valid data looks like. A contract can be considered shared, if both sides can verify that the data adheres to it. A Typical example is JSON Schema as used by OpenAPI. Since we're still dealing with XML data being exported, in our case XML Schema (XSD) seems like the the most natural solution. Using XSD would have the following advantages:
 
 1. It allows to utilize the expressive power of XML Schema.
 2. It can be used to validate any kind of data, not just ECRF data.
