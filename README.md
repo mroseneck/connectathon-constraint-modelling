@@ -37,7 +37,7 @@ The standard way of establishing a shared contract regarding aggregate-level dat
 6. It allows us to build system that are able to automatically validate and digest that data for further processing.
 
 ## Simple example of the expressive power of XSD
-This example in the files "pregnant.xml" and "pregant.xsd" shows a typical real-world use case in a trial. An inclusion item group has three items, that are to be conditionally and successively enabled, i.e.:
+This example files "pregnant.xml" and "pregant.xsd" on https://github.com/mroseneck/connectathon-constraint-modelling shows a typical real-world use case in a trial. An inclusion item group has three items, that are to be conditionally and successively enabled, i.e.:
 
 1. If the "gender" item has the value "m", then no other items must be present.
 2. If the "gender" item has the value "f", then the item "pregnant" must be present and have a value.
